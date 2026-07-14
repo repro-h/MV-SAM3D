@@ -1,11 +1,11 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 import os
+import sys
 
 # not ideal to put that here
-os.environ["CUDA_HOME"] = os.environ["CONDA_PREFIX"]
+os.environ["CUDA_HOME"] = os.environ.get("CONDA_PREFIX", sys.prefix)
 os.environ["LIDRA_SKIP_INIT"] = "true"
 
-import sys
 from typing import Union, Optional, List, Callable
 import numpy as np
 from PIL import Image

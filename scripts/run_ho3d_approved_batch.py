@@ -97,6 +97,8 @@ def environment_for(python_path: Path, cuda_visible_devices: str) -> dict[str, s
         env.pop(key, None)
     env["PYTHONNOUSERSITE"] = "1"
     env["CUDA_VISIBLE_DEVICES"] = str(cuda_visible_devices)
+    env["CONDA_PREFIX"] = str(prefix)
+    env["CONDA_DEFAULT_ENV"] = prefix.name
     env["PATH"] = f"{prefix / 'bin'}:{env.get('PATH', '')}"
     library_paths = [
         prefix / "lib",
