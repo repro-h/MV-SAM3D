@@ -19,7 +19,6 @@ import subprocess
 import seaborn as sns
 from PIL import Image
 import numpy as np
-import gradio as gr
 import matplotlib.pyplot as plt
 from copy import deepcopy
 from kaolin.visualize import IpyTurntableVisualizer
@@ -405,6 +404,8 @@ def display_image(image, masks=None):
 
 
 def interactive_visualizer(ply_path):
+    import gradio as gr
+
     with gr.Blocks() as demo:
         gr.Markdown("# 3D Gaussian Splatting (black-screen loading might take a while)")
         gr.Model3D(
