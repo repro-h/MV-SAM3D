@@ -158,6 +158,27 @@ python scripts/run_da3.py \
   --output_dir ./da3_outputs/your_scene
 ```
 
+### HO3D sequence conversion
+
+Convert one HO3D sequence from `rgb/` and `obj_mask_white/` into the
+MV-SAM3D layout. Frames with larger visible object masks are preferred while
+`--interval` enforces a minimum gap between selected frame numbers.
+
+```bash
+python preprocessing/prepare_ho3d_sequence.py \
+  --seq ABF10 \
+  --ho3d-root /home/mengxiangting/nas/mengxt/Datasets/HO3D_v3/train \
+  --interval 50 \
+  --num-frames 8 \
+  --dry-run
+```
+
+The YCB object name is read automatically from `meta/<frame>.pkl`'s `objName`
+label. Remove `--dry-run` to write the selected RGB images and RGBA masks to,
+for example, `data/ho3d/ABF10/{images,006_mustard_bottle}/`. Use `--overwrite`
+when intentionally replacing an existing converted sequence. For custom data
+without HO3D metadata, provide `--mask-prompt <YCB_NAME>` explicitly.
+
 ## Citation
 
 ```bibtex
